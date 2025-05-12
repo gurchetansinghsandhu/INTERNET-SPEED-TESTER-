@@ -1,0 +1,43 @@
+#  INTERNET SPEED TEST
+
+
+from tkinter import *
+import speedtest
+
+speed = Tk()
+speed.title('Internet speed test ')
+speed.geometry('500x600')
+speed.config(bg= "blue")
+
+def speedcheck():
+    speed = speedtest.Speedtest()
+    speed.get_servers()
+    down = str( round(speed.download()/(10**6), 3)) + "Mbps"
+    upload = str( round(speed.upload()/(10**6), 3)) + "Mbps"
+
+    label_down.config( text = down)
+    label_upload.config( text = upload)
+
+
+label = Label(speed, text="Internet Speed Test", font =("calibri", 30,"bold" ),bg = "blue", fg = "white")
+label.place(x = 60, y = 40, height= 30 , width= 380)
+
+label = Label(speed, text="Download Speed", font =("calibri", 30,"bold" ))
+label.place(x = 60, y = 130, height= 50 , width= 380)
+
+label_down = Label(speed, text="00", font =("calibri", 30,"bold" ))
+label.place(x = 60, y = 200, height= 50 , width= 380)
+
+label = Label(speed, text="Upload Speed", font =("calibri", 30,"bold" ))
+label.place(x = 60, y = 290 , height= 50 , width= 380)
+
+label_upload = Label(speed, text="00", font =("calibri", 30,"bold" ))
+label.place(x = 60, y = 360, height= 50 , width= 380)
+
+label = Label(speed, text="Internet Speed Test", font =("calibri", 30,"bold" ))
+label.place(x = 60, y = 360, height= 50 , width= 380)
+
+button  = Button(speed,text="CHECK SPEED", font =("TIME NEW ROMAN", 30,"bold" ), relief= RAISED, bg = "green", command = speedcheck)
+button.place(x = 60, y = 460, height= 50 , width= 380)
+
+speed.mainloop()
